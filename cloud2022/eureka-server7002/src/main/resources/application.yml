@@ -1,0 +1,17 @@
+server:
+  port: 7002
+
+eureka:
+  instance:
+    hostname: eureka7002.com  # eureka 服务器的实例地址
+
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      ## 一定要注意这里的地址 这是搭建集群的关键
+      defaultZone: http://eureka7001.com:7001/eureka/
+#  server: # 与client平行
+#    # 关闭自我保护机制，保证不可用该服务被及时剔除
+#    enable-self-preservation: false
+#    eviction-interval-timer-in-ms: 2000
