@@ -1,6 +1,6 @@
 package com.wzg.springcloud.controller;
 
-import com.wzg.lb.LoadBalancer;
+import com.wzg.springcloud.lb.LoadBalancer;
 import com.wzg.springcloud.entities.CommonResult;
 import com.wzg.springcloud.entities.Payment;
 import lombok.extern.slf4j.Slf4j;
@@ -71,6 +71,12 @@ public class OrderController {
         URI uri = serviceInstance.getUri();
 
         return restTemplate.getForObject(uri + "/payment/lb", String.class);
+    }
+
+    @GetMapping("/consumer/payment/zipkin")
+    public String paymentZipkin() {
+        String result = restTemplate.getForObject("http://localhost:8001"+"/payment/zipkin", String.class);
+        return result;
     }
 
 }
